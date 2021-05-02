@@ -141,6 +141,8 @@ CREATE TABLE BELONGS (
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
 	);
 	
+/* Sneha testing making a commit */
+	
 
 
 
