@@ -13,7 +13,7 @@ CREATE TABLE STUDENT_EMERGENCY_CONTACT (
 	EC_Name VARCHAR(40) PRIMARY KEY,
 	Relationship VARCHAR(20),
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
-	); 
+	);
 
 CREATE TABLE EMERGENCY_PHONE_NUMBER (
 	StudentID INTEGER NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE SCHOOL (
 	Name VARCHAR(40),
 	PhoneNumber VARCHAR(15)
 	);
-	
+
 CREATE TABLE ATTENDS (
 	StudentID INTEGER NOT NULL,
 	Address VARCHAR(50) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE ADMINS (
 	FOREIGN KEY (Address) REFERENCES school (Address),
 	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead)
 	);
-	
+
 CREATE TABLE DEPARTMENT_HEAD (
 	DepartmentHead VARCHAR(40) NOT NULL,
 	FacultyID INTEGER NOT NULL,
@@ -139,4 +139,6 @@ CREATE TABLE BELONGS (
 	FacultyID INTEGER NOT NULL,
 	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
-	);	
+	);
+
+    /* Hello, this Cameron changing things */	
