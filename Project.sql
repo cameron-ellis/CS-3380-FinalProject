@@ -139,13 +139,4 @@ CREATE TABLE BELONGS (
 	FacultyID INTEGER NOT NULL,
 	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
-	);
-	
-/* Sneha testing making a commit */
-	
-
-
-
-
-
-	
+	);	
