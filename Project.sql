@@ -1,8 +1,8 @@
 CREATE TABLE STUDENT (
     StudentID INTEGER PRIMARY KEY,
-    FirstName VARCHAR(20),
+    FirstName VARCHAR(20) NOT NULL,
     MiddleName VARCHAR(20),
-    LastName VARCHAR(20),
+    LastName VARCHAR(20) NOT NULL,
     DateOfBirth DATE,
     GradeLevel INTEGER,
     StudentEmail VARCHAR(30)
