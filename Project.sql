@@ -137,13 +137,13 @@ CREATE TABLE DEPARTMENT_HEAD (
 	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
 	);
-
+/* I think we should remove this table
 CREATE TABLE BELONGS (
 	DepartmentHead VARCHAR(40) NOT NULL,
 	FacultyID INTEGER NOT NULL,
 	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
-	);
+	);*/
 
 /*Student Table Inserts*/
 INSERT INTO `student` (`StudentID`, `FirstName`, `MiddleName`, `LastName`, `DateOfBirth`, `GradeLevel`, `StudentEmail`) VALUES ('12345678', 'Joe', 'Owen', 'Jacob', '2002-05-02', '12', 'joejacob@gmail.com');
