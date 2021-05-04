@@ -87,7 +87,8 @@ CREATE TABLE COURSE (
 CREATE TABLE TEACHES (
 	CourseID INTEGER NOT NULL,
 	FacultyID INTEGER NOT NULL,
-	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
+	FOREIGN KEY (CourseID) REFERENCES course (CourseID),
+	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID) /*missed this line in phase 2 relations, added back*/
 	);
 
 CREATE TABLE TAKES (
@@ -195,6 +196,98 @@ INSERT INTO `clubs` (`Club_Name`, `Club_School`, `Sponsor`, `Leader`) VALUES ('R
 INSERT INTO `clubs` (`Club_Name`, `Club_School`, `Sponsor`, `Leader`) VALUES ('Choir', 'Rockbridge', 'Derick Andy', 'Jill Brooks');
 INSERT INTO `clubs` (`Club_Name`, `Club_School`, `Sponsor`, `Leader`) VALUES ('Baseball', 'Battle', 'Merry Sanford', 'Joe Jacob');
 INSERT INTO `clubs` (`Club_Name`, `Club_School`, `Sponsor`, `Leader`) VALUES ('Chess Club', 'Hickman', NULL, NULL);
+
+/*Joins Table Inserts*/
+INSERT INTO `joins` (`StudentID`, `Club_Name`, `Club_School`) VALUES ('24681012', 'Chess Club', 'Smithton');
+INSERT INTO `joins` (`StudentID`, `Club_Name`, `Club_School`) VALUES ('87654321', 'Chess Club', 'Hickman');
+INSERT INTO `joins` (`StudentID`, `Club_Name`, `Club_School`) VALUES ('13579246', 'Robotics', 'Hickman');
+INSERT INTO `joins` (`StudentID`, `Club_Name`, `Club_School`) VALUES ('12345678', 'Choir', 'Rockbridge');
+INSERT INTO `joins` (`StudentID`, `Club_Name`, `Club_School`) VALUES ('11111111', 'Baseball', 'Battle');
+INSERT INTO `joins` (`StudentID`, `Club_Name`, `Club_School`) VALUES ('13579246', 'Chess Club', 'Hickman');
+
+/*School Table Inserts*/
+INSERT INTO `school` (`Address`, `Name`, `PhoneNumber`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', 'Hickman', '(573) 214-3000');
+INSERT INTO `school` (`Address`, `Name`, `PhoneNumber`) VALUES ('4303 S Providence Rd #7198, Columbia, MO 65203', 'Rockbridge', '(573) 214-3100');
+INSERT INTO `school` (`Address`, `Name`, `PhoneNumber`) VALUES ('7575 E St Charles Rd, Columbia, MO 65202', 'Battle', '(573) 214-3300');
+INSERT INTO `school` (`Address`, `Name`, `PhoneNumber`) VALUES ('3600 W Worley St, Columbia, MO 65203', 'Smithton', '(573) 214-3260');
+
+/*Attends Table Inserts*/
+INSERT INTO `attends` (`StudentID`, `Address`) VALUES ('12345678', '4303 S Providence Rd #7198, Columbia, MO 65203');
+INSERT INTO `attends` (`StudentID`, `Address`) VALUES ('87654321', '1104 N Providence Rd, Columbia, MO 65203');
+INSERT INTO `attends` (`StudentID`, `Address`) VALUES ('13579246', '1104 N Providence Rd, Columbia, MO 65203');
+INSERT INTO `attends` (`StudentID`, `Address`) VALUES ('24681012', '3600 W Worley St, Columbia, MO 65203');
+INSERT INTO `attends` (`StudentID`, `Address`) VALUES ('11111111', '7575 E St Charles Rd, Columbia, MO 65202');
+
+/*Course Table Inserts*/
+INSERT INTO `course` (`CourseID`, `CourseName`, `RoomNumber`, `Course_School`, `CreditHours`) VALUES ('14020184', 'Calculus', '5', 'Hickman', '5');
+INSERT INTO `course` (`CourseID`, `CourseName`, `RoomNumber`, `Course_School`, `CreditHours`) VALUES ('25830589', 'Calculus', '6', 'Smithton', '3');
+INSERT INTO `course` (`CourseID`, `CourseName`, `RoomNumber`, `Course_School`, `CreditHours`) VALUES ('75230598', 'English', '1', 'Smithton', '3');
+INSERT INTO `course` (`CourseID`, `CourseName`, `RoomNumber`, `Course_School`, `CreditHours`) VALUES ('12365440', 'Chemistry', '3', 'Hickman', '4');
+INSERT INTO `course` (`CourseID`, `CourseName`, `RoomNumber`, `Course_School`, `CreditHours`) VALUES ('71024395', 'Algebra', '1', 'Smithton', '3');
+INSERT INTO `course` (`CourseID`, `CourseName`, `RoomNumber`, `Course_School`, `CreditHours`) VALUES ('36540392', 'US History', '2', 'Battle', '4');
+
+/*Teaches Table Inserts*/
+INSERT INTO `teaches` (`CourseID`, `FacultyID`) VALUES ('14020184', '16130625');
+INSERT INTO `teaches` (`CourseID`, `FacultyID`) VALUES ('25830589', '27917199');
+INSERT INTO `teaches` (`CourseID`, `FacultyID`) VALUES ('75230598', '77735153');
+INSERT INTO `teaches` (`CourseID`, `FacultyID`) VALUES ('12365440', '16421971');
+INSERT INTO `teaches` (`CourseID`, `FacultyID`) VALUES ('71024395', '71738964');
+INSERT INTO `teaches` (`CourseID`, `FacultyID`) VALUES ('36540392', '37996205');
+
+/*Takes Table Inserts*/
+INSERT INTO `takes` (`StudentID`, `CourseID`) VALUES ('12345678', '25830589');
+INSERT INTO `takes` (`StudentID`, `CourseID`) VALUES ('87654321', '14020184');
+INSERT INTO `takes` (`StudentID`, `CourseID`) VALUES ('13579246', '12365440');
+INSERT INTO `takes` (`StudentID`, `CourseID`) VALUES ('24681012', '71024395');
+INSERT INTO `takes` (`StudentID`, `CourseID`) VALUES ('11111111', '36540392');
+
+/*Class-Period Table Inserts*/
+INSERT INTO `class_period` (`CourseID`, `ClassPeriod`) VALUES ('14020184', '6');
+INSERT INTO `class_period` (`CourseID`, `ClassPeriod`) VALUES ('25830589', '1');
+INSERT INTO `class_period` (`CourseID`, `ClassPeriod`) VALUES ('75230598', '4');
+INSERT INTO `class_period` (`CourseID`, `ClassPeriod`) VALUES ('12365440', '8');
+INSERT INTO `class_period` (`CourseID`, `ClassPeriod`) VALUES ('71024395', '3');
+INSERT INTO `class_period` (`CourseID`, `ClassPeriod`) VALUES ('36540392', '7');
+
+/*Faculty Table Inserts*/
+INSERT INTO `faculty` (`FacultyID`, `Faculty_Name`, `Salary`, `StartDate`) VALUES ('16130625', 'Ruthie Maxene', '60000.00', '1990-06-15');
+INSERT INTO `faculty` (`FacultyID`, `Faculty_Name`, `Salary`, `StartDate`) VALUES ('27917199', 'Constance Odell', '45000.00', '2010-01-25');
+INSERT INTO `faculty` (`FacultyID`, `Faculty_Name`, `Salary`, `StartDate`) VALUES ('77735153', 'Stanley Haley', '48000.00', '2007-01-23');
+INSERT INTO `faculty` (`FacultyID`, `Faculty_Name`, `Salary`, `StartDate`) VALUES ('16421971', 'Mandy Brownlow', '52000.00', '1999-03-02');
+INSERT INTO `faculty` (`FacultyID`, `Faculty_Name`, `Salary`, `StartDate`) VALUES ('71738964', 'Adena Addison', '40000.00', '2017-04-07');
+INSERT INTO `faculty` (`FacultyID`, `Faculty_Name`, `Salary`, `StartDate`) VALUES ('37996205', 'Victor Street', '50000.00', '2002-10-11');
+
+/*Works Table Inserts*/
+INSERT INTO `works` (`Address`, `FacultyID`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', '16130625');
+INSERT INTO `works` (`Address`, `FacultyID`) VALUES ('4303 S Providence Rd #7198, Columbia, MO 65203', '27917199');
+INSERT INTO `works` (`Address`, `FacultyID`) VALUES ('3600 W Worley St, Columbia, MO 65203', '77735153');
+INSERT INTO `works` (`Address`, `FacultyID`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', '16421971');
+INSERT INTO `works` (`Address`, `FacultyID`) VALUES ('3600 W Worley St, Columbia, MO 65203', '71738964');
+INSERT INTO `works` (`Address`, `FacultyID`) VALUES ('7575 E St Charles Rd, Columbia, MO 65202', '37996205');
+
+/*Department Table Inserts*/
+INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Ruthie Maxene', 'Math');
+INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Stanley Haley', 'English');
+INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Victor Street', 'Social Studies');
+INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Constance Odell', 'Math');
+INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Mandy Brownlow', 'Science');
+
+/*Admins Table Inserts*/
+INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', 'Ruthie Maxene');
+INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('3600 W Worley St, Columbia, MO 65203', 'Stanley Haley');
+INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('7575 E St Charles Rd, Columbia, MO 65202', 'Victor Street');
+INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('4303 S Providence Rd #7198, Columbia, MO 65203', 'Constance Odell');
+INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', 'Mandy Brownlow');
+
+/*Department_Head Table Inserts*/
+INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Ruthie Maxene', '16130625', '1998-01-23');
+INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Stanley Haley', '77735153', '2012-01-23');
+INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Victor Street', '37996205', '2009-01-23');
+INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Constance Odell', '27917199', '2015-01-23');
+INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Mandy Brownlow', '16421971', '2006-01-23');
+
+
+
 
 
 
