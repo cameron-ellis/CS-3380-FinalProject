@@ -124,7 +124,8 @@ CREATE TABLE WORKS (
 	Address VARCHAR(50) NOT NULL,
 	FacultyID INTEGER NOT NULL,
 	FOREIGN KEY (Address) REFERENCES school (Address),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
+	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID),
+	PRIMARY KEY(Address,FacultyID)
 	);
 
 CREATE TABLE ADMINS (
