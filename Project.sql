@@ -90,7 +90,8 @@ CREATE TABLE FACULTY (
 	FacultyID INTEGER PRIMARY KEY,
 	Faculty_Name VARCHAR(40),
 	Salary INTEGER,
-	StartDate DATE
+	StartDate DATE,
+	Department VARCHAR(20)
 	);
 	
 CREATE TABLE TEACHES (
@@ -115,11 +116,6 @@ CREATE TABLE CLASS_PERIOD (
 	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
 	);
 
-CREATE TABLE DEPARTMENT (
-	DepartmentHead VARCHAR(40) PRIMARY KEY,
-	Subject VARCHAR(20)
-	);
-
 CREATE TABLE WORKS (
 	Address VARCHAR(50) NOT NULL,
 	FacultyID INTEGER NOT NULL,
@@ -128,20 +124,6 @@ CREATE TABLE WORKS (
 	PRIMARY KEY(Address,FacultyID)
 	);
 
-CREATE TABLE ADMINS (
-	Address VARCHAR(50) NOT NULL,
-	DepartmentHead VARCHAR(40) NOT NULL,
-	FOREIGN KEY (Address) REFERENCES school (Address),
-	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead)
-	);
-
-CREATE TABLE DEPARTMENT_HEAD (
-	DepartmentHead VARCHAR(40) NOT NULL,
-	FacultyID INTEGER NOT NULL,
-	DH_StartDate DATE,
-	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
-	);
 
 /*Student Table Inserts*/
 INSERT INTO STUDENT
@@ -310,24 +292,3 @@ VALUES
 ('1104 N Providence Rd, Columbia, MO 65203', '16421971'),
 ('3600 W Worley St, Columbia, MO 65203', '71738964'),
 ('7575 E St Charles Rd, Columbia, MO 65202', '37996205');
-
-/*Department Table Inserts*/
-INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Ruthie Maxene', 'Math');
-INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Stanley Haley', 'English');
-INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Victor Street', 'Social Studies');
-INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Constance Odell', 'Math');
-INSERT INTO `department` (`DepartmentHead`, `Subject`) VALUES ('Mandy Brownlow', 'Science');
-
-/*Admins Table Inserts*/
-INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', 'Ruthie Maxene');
-INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('3600 W Worley St, Columbia, MO 65203', 'Stanley Haley');
-INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('7575 E St Charles Rd, Columbia, MO 65202', 'Victor Street');
-INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('4303 S Providence Rd #7198, Columbia, MO 65203', 'Constance Odell');
-INSERT INTO `admins` (`Address`, `DepartmentHead`) VALUES ('1104 N Providence Rd, Columbia, MO 65203', 'Mandy Brownlow');
-
-/*Department_Head Table Inserts*/
-INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Ruthie Maxene', '16130625', '1998-01-23');
-INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Stanley Haley', '77735153', '2012-01-23');
-INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Victor Street', '37996205', '2009-01-23');
-INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Constance Odell', '27917199', '2015-01-23');
-INSERT INTO `department_head` (`DepartmentHead`, `FacultyID`, `DH_StartDate`) VALUES ('Mandy Brownlow', '16421971', '2006-01-23');
