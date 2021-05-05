@@ -60,7 +60,8 @@ CREATE TABLE JOINS (
 	Club_Name VARCHAR(30) NOT NULL, /*this wasnt in our relations table but i think it should have been, added because it wouldn't make sense to just have the club_school listed when a student joins a club*/
 	Club_School VARCHAR(30) NOT NULL,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
-	FOREIGN KEY (Club_Name, Club_School) REFERENCES clubs (Club_Name, Club_School)
+	FOREIGN KEY (Club_Name, Club_School) REFERENCES clubs (Club_Name, Club_School),
+	PRIMARY KEY(StudentID,Club_Name,Club_School)
 	);
 
 CREATE TABLE SCHOOL (
@@ -73,7 +74,8 @@ CREATE TABLE ATTENDS (
 	StudentID INTEGER NOT NULL,
 	Address VARCHAR(50) NOT NULL,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
-	FOREIGN KEY (Address) REFERENCES school (Address)
+	FOREIGN KEY (Address) REFERENCES school (Address),
+	PRIMARY KEY(StudentID,Address)
 	);
 
 CREATE TABLE COURSE (
@@ -95,14 +97,16 @@ CREATE TABLE TEACHES (
 	CourseID INTEGER NOT NULL,
 	FacultyID INTEGER NOT NULL,
 	FOREIGN KEY (CourseID) REFERENCES course (CourseID),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID) /*missed this line in phase 2 relations, added back*/
+	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID), /*missed this line in phase 2 relations, added back*/
+	PRIMARY KEY(FacultyID,CourseID)
 	);
 
 CREATE TABLE TAKES (
 	StudentID INTEGER NOT NULL,
 	CourseID INTEGER NOT NULL,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
-	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
+	FOREIGN KEY (CourseID) REFERENCES course (CourseID),
+	PRIMARY KEY(StudentID,CourseID)
 	);
 
 CREATE TABLE CLASS_PERIOD (
@@ -137,13 +141,6 @@ CREATE TABLE DEPARTMENT_HEAD (
 	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
 	);
-/* I think we should remove this table
-CREATE TABLE BELONGS (
-	DepartmentHead VARCHAR(40) NOT NULL,
-	FacultyID INTEGER NOT NULL,
-	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
-	);*/
 
 /*Student Table Inserts*/
 INSERT INTO STUDENT
