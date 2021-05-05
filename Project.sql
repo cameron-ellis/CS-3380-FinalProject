@@ -83,7 +83,14 @@ CREATE TABLE COURSE (
 	Course_School VARCHAR(40),
 	CreditHours INTEGER
 	);
-
+	
+CREATE TABLE FACULTY (
+	FacultyID INTEGER PRIMARY KEY,
+	Faculty_Name VARCHAR(40),
+	Salary INTEGER,
+	StartDate DATE
+	);
+	
 CREATE TABLE TEACHES (
 	CourseID INTEGER NOT NULL,
 	FacultyID INTEGER NOT NULL,
@@ -107,13 +114,6 @@ CREATE TABLE CLASS_PERIOD (
 CREATE TABLE DEPARTMENT (
 	DepartmentHead VARCHAR(40) PRIMARY KEY,
 	Subject VARCHAR(20)
-	);
-
-CREATE TABLE FACULTY (
-	FacultyID INTEGER PRIMARY KEY,
-	Faculty_Name VARCHAR(40),
-	Salary INTEGER,
-	StartDate DATE
 	);
 
 CREATE TABLE WORKS (
@@ -259,6 +259,17 @@ VALUES
 ('71024395', 'Algebra', '1', 'Smithton', '3'),
 ('36540392', 'US History', '2', 'Battle', '4');
 
+/*Faculty Table Inserts*/
+INSERT INTO FACULTY
+(FacultyID, Faculty_Name, Salary, StartDate)
+VALUES
+('16130625', 'Ruthie Maxene', '60000.00', '1990-06-15'),
+('27917199', 'Constance Odell', '45000.00', '2010-01-25'),
+('77735153', 'Stanley Haley', '48000.00', '2007-01-23'),
+('16421971', 'Mandy Brownlow', '52000.00', '1999-03-02'),
+('71738964', 'Adena Addison', '40000.00', '2017-04-07'),
+('37996205', 'Victor Street', '50000.00', '2002-10-11');
+
 /*Teaches Table Inserts*/
 INSERT INTO TEACHES
 (CourseID, FacultyID)
@@ -290,17 +301,6 @@ VALUES
 ('12365440', '8'),
 ('71024395', '3'),
 ('36540392', '7');
-
-/*Faculty Table Inserts*/
-INSERT INTO FACULTY
-(FacultyID, Faculty_Name, Salary, StartDate)
-VALUES
-('16130625', 'Ruthie Maxene', '60000.00', '1990-06-15'),
-('27917199', 'Constance Odell', '45000.00', '2010-01-25'),
-('77735153', 'Stanley Haley', '48000.00', '2007-01-23'),
-('16421971', 'Mandy Brownlow', '52000.00', '1999-03-02'),
-('71738964', 'Adena Addison', '40000.00', '2017-04-07'),
-('37996205', 'Victor Street', '50000.00', '2002-10-11');
 
 /*Works Table Inserts*/
 INSERT INTO WORKS
