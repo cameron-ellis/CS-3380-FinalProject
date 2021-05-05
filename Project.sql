@@ -4,7 +4,7 @@ CREATE TABLE STUDENT (
     MiddleName VARCHAR(20),
     LastName VARCHAR(20) NOT NULL,
     DateOfBirth DATE,
-    GradeLevel INTEGER,
+    GradeLevel SMALLINT,
     StudentEmail VARCHAR(30)
     );
 
@@ -35,7 +35,7 @@ CREATE TABLE STUDENT_EC_EMAIL (
 
 CREATE TABLE ACADEMIC_RECORD (
 	StudentID INTEGER NOT NULL,
-	Credits INTEGER NOT NULL, /*Changed this to NOT NULL since the table doesnt serve a purpose if it is null*/
+	Credits SMALLINT NOT NULL, /*Changed this to NOT NULL since the table doesnt serve a purpose if it is null*/
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 	);
 /*removed AR_StudentID from this table and Semester_GPA as per the TA grading */
@@ -81,9 +81,9 @@ CREATE TABLE ATTENDS (
 CREATE TABLE COURSE (
 	CourseID INTEGER PRIMARY KEY,
 	CourseName VARCHAR(30),
-	RoomNumber INTEGER,
+	RoomNumber SMALLINT,
 	Course_School VARCHAR(40),
-	CreditHours INTEGER
+	CreditHours SMALLINT
 	);
 	
 CREATE TABLE FACULTY (
