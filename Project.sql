@@ -3,8 +3,8 @@ CREATE TABLE STUDENT (
     FirstName VARCHAR(20) NOT NULL,
     MiddleName VARCHAR(20),
     LastName VARCHAR(20) NOT NULL,
-    DateOfBirth DATE,
-    GradeLevel SMALLINT,
+    DateOfBirth DATE NOT NULL,
+    GradeLevel SMALLINT NOT NULL,
     StudentEmail VARCHAR(30)
     );
 
@@ -27,7 +27,7 @@ CREATE TABLE EMERGENCY_PHONE_NUMBER (
 CREATE TABLE STUDENT_EC_EMAIL (
 	StudentID INTEGER NOT NULL,
 	EC_NAME VARCHAR(40) NOT NULL,
-	Email VARCHAR(30) NOT NULL,
+	EC_Email VARCHAR(30) NOT NULL,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
 	FOREIGN KEY (EC_Name) REFERENCES student_emergency_contact (EC_Name)
 	);
@@ -50,7 +50,7 @@ CREATE TABLE SEMESTER_GPA (
 CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
 	Club_School VARCHAR(30) NOT NULL, /*1:should this reference a school? 2:Changed this to be NOT NULL instead of PRIMARY KEY, because it can't be unqiue. primary key is club_name and club_School together*/
-	Sponsor VARCHAR(40), /*should this reference a faculty member? */
+	Sponsor VARCHAR(40) NOT NULL, /*should this reference a faculty member? */
 	Leader VARCHAR(40), /* should this reference a student? */
 	PRIMARY KEY(Club_Name,Club_School)
 	);
@@ -66,8 +66,8 @@ CREATE TABLE JOINS (
 
 CREATE TABLE SCHOOL (
 	Address VARCHAR(50) PRIMARY KEY,
-	Name VARCHAR(40),
-	PhoneNumber VARCHAR(15)
+	Name VARCHAR(40) NOT NULL,
+	PhoneNumber VARCHAR(15) NOT NULL
 	);
 
 CREATE TABLE ATTENDS (
@@ -80,17 +80,18 @@ CREATE TABLE ATTENDS (
 
 CREATE TABLE COURSE (
 	CourseID INTEGER PRIMARY KEY,
-	CourseName VARCHAR(30),
+	CourseName VARCHAR(30) NOT NULL,
 	RoomNumber SMALLINT,
-	Course_School VARCHAR(40),
+	Course_School VARCHAR(40) NOT NULL,
 	CreditHours SMALLINT
 	);
 	
 CREATE TABLE FACULTY (
 	FacultyID INTEGER PRIMARY KEY,
-	Faculty_Name VARCHAR(40),
-	Salary INTEGER,
-	StartDate DATE
+	Faculty_Name VARCHAR(40) NOT NULL,
+	Salary INTEGER NOT NULL,
+	StartDate DATE NOT NULL,
+	Department VARCHAR(20) NOT NULL,
 	);
 	
 CREATE TABLE TEACHES (
@@ -115,32 +116,12 @@ CREATE TABLE CLASS_PERIOD (
 	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
 	);
 
-CREATE TABLE DEPARTMENT (
-	DepartmentHead VARCHAR(40) PRIMARY KEY,
-	Subject VARCHAR(20)
-	);
-
 CREATE TABLE WORKS (
 	Address VARCHAR(50) NOT NULL,
 	FacultyID INTEGER NOT NULL,
 	FOREIGN KEY (Address) REFERENCES school (Address),
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID),
 	PRIMARY KEY(Address,FacultyID)
-	);
-
-CREATE TABLE ADMINS (
-	Address VARCHAR(50) NOT NULL,
-	DepartmentHead VARCHAR(40) NOT NULL,
-	FOREIGN KEY (Address) REFERENCES school (Address),
-	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead)
-	);
-
-CREATE TABLE DEPARTMENT_HEAD (
-	DepartmentHead VARCHAR(40) NOT NULL,
-	FacultyID INTEGER NOT NULL,
-	DH_StartDate DATE,
-	FOREIGN KEY (DepartmentHead) REFERENCES department (DepartmentHead),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
 	);
 
 /*Student Table Inserts*/
