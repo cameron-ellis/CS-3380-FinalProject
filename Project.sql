@@ -35,18 +35,21 @@ CREATE TABLE STUDENT_EC_EMAIL (
 
 CREATE TABLE ACADEMIC_RECORD (
 	StudentID INTEGER NOT NULL,
-	Credits SMALLINT NOT NULL, /*Changed this to NOT NULL since the table doesnt serve a purpose if it is null*/
+	Semester_Credits SMALLINT NOT NULL,
+	SemesterID VARCHAR(20) NOT NULL,
+	GPA FLOAT,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 	);
 /*removed AR_StudentID from this table and Semester_GPA as per the TA grading */
 
+/* Recommended get rid of this and put into academic record as seen above
 CREATE TABLE SEMESTER_GPA (
 	StudentID INTEGER NOT NULL,
-	Semester VARCHAR(20),/*should one or both of these be not null?*/
-	GPA FLOAT,/*should one or both of these be not null?*/
+	Semester VARCHAR(20),
+	GPA FLOAT,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 	);
-	
+*/
 CREATE TABLE SCHOOL (
 	Address VARCHAR(50) PRIMARY KEY,
 	Name VARCHAR(40) NOT NULL,
