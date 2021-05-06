@@ -3,8 +3,8 @@ CREATE TABLE STUDENT (
     FirstName VARCHAR(20) NOT NULL,
     MiddleName VARCHAR(20),
     LastName VARCHAR(20) NOT NULL,
-    DateOfBirth DATE,
-    GradeLevel INTEGER,
+    DateOfBirth DATE NOT NULL,
+    GradeLevel SMALLINT NOT NULL,
     StudentEmail VARCHAR(30)
     );
 
@@ -27,7 +27,7 @@ CREATE TABLE EMERGENCY_PHONE_NUMBER (
 CREATE TABLE STUDENT_EC_EMAIL (
 	StudentID INTEGER NOT NULL,
 	EC_NAME VARCHAR(40) NOT NULL,
-	Email VARCHAR(30) NOT NULL,
+	EC_Email VARCHAR(30) NOT NULL,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
 	FOREIGN KEY (EC_Name) REFERENCES student_emergency_contact (EC_Name)
 	);
@@ -35,7 +35,7 @@ CREATE TABLE STUDENT_EC_EMAIL (
 
 CREATE TABLE ACADEMIC_RECORD (
 	StudentID INTEGER NOT NULL,
-	Credits INTEGER NOT NULL, /*Changed this to NOT NULL since the table doesnt serve a purpose if it is null*/
+	Credits SMALLINT NOT NULL, /*Changed this to NOT NULL since the table doesnt serve a purpose if it is null*/
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 	);
 /*removed AR_StudentID from this table and Semester_GPA as per the TA grading */
@@ -46,13 +46,21 @@ CREATE TABLE SEMESTER_GPA (
 	GPA FLOAT,/*should one or both of these be not null?*/
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 	);
-
+	
+CREATE TABLE SCHOOL (
+	Address VARCHAR(50) PRIMARY KEY,
+	Name VARCHAR(40) NOT NULL,
+	PhoneNumber VARCHAR(15) NOT NULL
+	);
+	
 CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
-	Club_School VARCHAR(30) NOT NULL, /*1:should this reference a school? 2:Changed this to be NOT NULL instead of PRIMARY KEY, because it can't be unqiue. primary key is club_name and club_School together*/
-	Sponsor VARCHAR(40), /*should this reference a faculty member? */
+	Club_School VARCHAR(30) NOT NULL,
+	Sponsor VARCHAR(40) NOT NULL,
 	Leader VARCHAR(40), /* should this reference a student? */
-	PRIMARY KEY(Club_Name,Club_School)
+	PRIMARY KEY(Club_Name,Club_School),
+	FOREIGN KEY (Club_School) REFERENCES school (Name),
+	FOREIGN KEY (Leader) REFERENCES student (StudentID)
 	);
 
 CREATE TABLE JOINS (
@@ -62,12 +70,6 @@ CREATE TABLE JOINS (
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
 	FOREIGN KEY (Club_Name, Club_School) REFERENCES clubs (Club_Name, Club_School),
 	PRIMARY KEY(StudentID,Club_Name,Club_School)
-	);
-
-CREATE TABLE SCHOOL (
-	Address VARCHAR(50) PRIMARY KEY,
-	Name VARCHAR(40),
-	PhoneNumber VARCHAR(15)
 	);
 
 CREATE TABLE ATTENDS (
@@ -80,18 +82,19 @@ CREATE TABLE ATTENDS (
 
 CREATE TABLE COURSE (
 	CourseID INTEGER PRIMARY KEY,
-	CourseName VARCHAR(30),
-	RoomNumber INTEGER,
-	Course_School VARCHAR(40),
-	CreditHours INTEGER
+	CourseName VARCHAR(30) NOT NULL,
+	RoomNumber SMALLINT,
+	Course_School VARCHAR(40) NOT NULL,
+	CreditHours SMALLINT,
+	FOREIGN KEY Course_School REFERENCES school (Name)
 	);
 	
 CREATE TABLE FACULTY (
 	FacultyID INTEGER PRIMARY KEY,
-	Faculty_Name VARCHAR(40),
-	Salary INTEGER,
-	StartDate DATE,
-	Department VARCHAR(20)
+	Faculty_Name VARCHAR(40) NOT NULL,
+	Salary INTEGER NOT NULL,
+	StartDate DATE NOT NULL,
+	Department VARCHAR(20) NOT NULL,
 	);
 	
 CREATE TABLE TEACHES (
@@ -123,7 +126,6 @@ CREATE TABLE WORKS (
 	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID),
 	PRIMARY KEY(Address,FacultyID)
 	);
-
 
 /*Student Table Inserts*/
 INSERT INTO STUDENT
@@ -188,6 +190,15 @@ VALUES
 ('24681012', 'Fall 2019', '2.5'),
 ('11111111', 'Spring 2018', '1.0');
 
+/*School Table Inserts*/
+INSERT INTO SCHOOL
+(Address, Name, PhoneNumber)
+VALUES
+('1104 N Providence Rd, Columbia, MO 65203', 'Hickman', '(573) 214-3000'),
+('4303 S Providence Rd #7198, Columbia, MO 65203', 'Rockbridge', '(573) 214-3100'),
+('7575 E St Charles Rd, Columbia, MO 65202', 'Battle', '(573) 214-3300'),
+('3600 W Worley St, Columbia, MO 65203', 'Smithton', '(573) 214-3260');
+
 /*Clubs Table Inserts*/
 INSERT INTO CLUBS
 (Club_Name, Club_School, Sponsor, Leader)
@@ -208,15 +219,6 @@ VALUES
 ('12345678', 'Choir', 'Rockbridge'),
 ('11111111', 'Baseball', 'Battle'),
 ('13579246', 'Chess Club', 'Hickman');
-
-/*School Table Inserts*/
-INSERT INTO SCHOOL
-(Address, Name, PhoneNumber)
-VALUES
-('1104 N Providence Rd, Columbia, MO 65203', 'Hickman', '(573) 214-3000'),
-('4303 S Providence Rd #7198, Columbia, MO 65203', 'Rockbridge', '(573) 214-3100'),
-('7575 E St Charles Rd, Columbia, MO 65202', 'Battle', '(573) 214-3300'),
-('3600 W Worley St, Columbia, MO 65203', 'Smithton', '(573) 214-3260');
 
 /*Attends Table Inserts*/
 INSERT INTO ATTENDS
