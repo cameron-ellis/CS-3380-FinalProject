@@ -29,7 +29,6 @@ CREATE TABLE EMERGENCY_PHONE_NUMBER (
 		ON DELETE CASCADE
 	);
 
-/*renamed this to Student_EC_Email*/
 CREATE TABLE STUDENT_EC_EMAIL (
 	StudentID INTEGER NOT NULL,
 	EC_NAME VARCHAR(40) NOT NULL,
@@ -51,16 +50,7 @@ CREATE TABLE ACADEMIC_RECORD (
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 	);
-/*removed AR_StudentID from this table and Semester_GPA as per the TA grading */
 
-/* Recommended get rid of this and put into academic record as seen above
-CREATE TABLE SEMESTER_GPA (
-	StudentID INTEGER NOT NULL,
-	Semester VARCHAR(20),
-	GPA FLOAT,
-	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
-	);
-*/
 CREATE TABLE SCHOOL (
 	Address VARCHAR(50) PRIMARY KEY,
 	Name VARCHAR(40) NOT NULL,
@@ -69,22 +59,22 @@ CREATE TABLE SCHOOL (
 
 CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
-	Club_School VARCHAR(30) NOT NULL,
+	Club_School VARCHAR(40) NOT NULL,
 	Sponsor VARCHAR(40) NOT NULL,
-	LeaderID VARCHAR(40), /* should this reference a student? */
-	PRIMARY KEY(Club_Name,Club_School),
+    LeaderID INTEGER NOT NULL,
 	FOREIGN KEY (Club_School) REFERENCES school (Name)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
 	FOREIGN KEY (LeaderID) REFERENCES student (StudentID)
 		ON UPDATE CASCADE
-		ON DELETE CASCADE
+		ON DELETE CASCADE,
+    PRIMARY KEY(Club_Name,Club_School)
 	);
 
 CREATE TABLE JOINS (
 	StudentID INTEGER NOT NULL,
-	Club_Name VARCHAR(30) NOT NULL, /*this wasnt in our relations table but i think it should have been, added because it wouldn't make sense to just have the club_school listed when a student joins a club*/
-	Club_School VARCHAR(30) NOT NULL,
+	Club_Name VARCHAR(30) NOT NULL,
+	Club_School VARCHAR(40) NOT NULL,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
@@ -112,7 +102,7 @@ CREATE TABLE COURSE (
 	RoomNumber SMALLINT,
 	Course_School VARCHAR(40) NOT NULL,
 	CreditHours SMALLINT,
-	FOREIGN KEY Course_School REFERENCES school (Name)
+	FOREIGN KEY (Course_School) REFERENCES school (Name)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 	);
@@ -122,7 +112,7 @@ CREATE TABLE FACULTY (
 	Faculty_Name VARCHAR(40) NOT NULL,
 	Salary INTEGER NOT NULL,
 	StartDate DATE NOT NULL,
-	Department VARCHAR(20) NOT NULL,
+	Department VARCHAR(20) NOT NULL
 	);
 
 CREATE TABLE TEACHES (
