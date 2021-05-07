@@ -56,7 +56,7 @@ CREATE TABLE SCHOOL (
 	Name VARCHAR(40) NOT NULL,
 	PhoneNumber VARCHAR(15) NOT NULL
 	);
-
+/* Error occurring here saying incorrect formatting for Foreign Key */
 CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
 	Club_School VARCHAR(40) NOT NULL,
