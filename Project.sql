@@ -42,11 +42,10 @@ CREATE TABLE STUDENT_EC_EMAIL (
 		ON DELETE CASCADE
 	);
 
-
 CREATE TABLE ACADEMIC_RECORD (
 	StudentID INTEGER NOT NULL,
+    SemesterID VARCHAR(20) NOT NULL,
 	Semester_Credits SMALLINT NOT NULL,
-	SemesterID VARCHAR(20) NOT NULL,
 	GPA FLOAT,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
 		ON UPDATE CASCADE
@@ -67,7 +66,7 @@ CREATE TABLE SCHOOL (
 	Name VARCHAR(40) NOT NULL,
 	PhoneNumber VARCHAR(15) NOT NULL
 	);
-	
+
 CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
 	Club_School VARCHAR(30) NOT NULL,
@@ -117,7 +116,7 @@ CREATE TABLE COURSE (
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 	);
-	
+
 CREATE TABLE FACULTY (
 	FacultyID INTEGER PRIMARY KEY,
 	Faculty_Name VARCHAR(40) NOT NULL,
@@ -125,7 +124,7 @@ CREATE TABLE FACULTY (
 	StartDate DATE NOT NULL,
 	Department VARCHAR(20) NOT NULL,
 	);
-	
+
 CREATE TABLE TEACHES (
 	CourseID INTEGER NOT NULL,
 	FacultyID INTEGER NOT NULL,
@@ -215,15 +214,15 @@ VALUES
 
 /*Academic_Record Table Inserts*/
 INSERT INTO ACADEMIC_RECORD
-( StudentID, Credits )
+(StudentID, SemesterID, Semester_Credits, GPA)
 VALUES
-('12345678', '110'),
-('87654321', '50'),
-('13579246', '70'),
-('24681012', '36'),
-('11111111', '0');
+('12345678', 'Spring 2020', '110', '4.0'),
+('87654321', 'Spring 2020', '50', '3.6'),
+('13579246', 'Fall 2019', '70', '3.0'),
+('24681012', 'Fall 2019', '36', '2.5'),
+('11111111', 'Spring 2018', '0', '1.0');
 
-/*Semester_GPA Table Inserts*/
+/*Semester_GPA Table Inserts removed and placed data into academic record
 INSERT INTO SEMESTER_GPA
 (StudentID, Semester, GPA)
 VALUES
@@ -232,7 +231,7 @@ VALUES
 ('13579246', 'Fall 2019', '3.0'),
 ('24681012', 'Fall 2019', '2.5'),
 ('11111111', 'Spring 2018', '1.0');
-
+*/
 /*School Table Inserts*/
 INSERT INTO SCHOOL
 (Address, Name, PhoneNumber)
