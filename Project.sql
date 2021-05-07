@@ -13,14 +13,20 @@ CREATE TABLE STUDENT_EMERGENCY_CONTACT (
 	EC_Name VARCHAR(40) PRIMARY KEY,
 	Relationship VARCHAR(20),
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 
 CREATE TABLE EMERGENCY_PHONE_NUMBER (
 	StudentID INTEGER NOT NULL,
 	EC_Name VARCHAR(40) NOT NULL,
 	EC_Phone VARCHAR(15) NOT NULL,
-	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
+	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	FOREIGN KEY (EC_Name) REFERENCES student_emergency_contact (EC_Name)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 
 /*renamed this to Student_EC_Email*/
@@ -28,8 +34,12 @@ CREATE TABLE STUDENT_EC_EMAIL (
 	StudentID INTEGER NOT NULL,
 	EC_NAME VARCHAR(40) NOT NULL,
 	EC_Email VARCHAR(30) NOT NULL,
-	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
+	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	FOREIGN KEY (EC_Name) REFERENCES student_emergency_contact (EC_Name)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 
 
@@ -39,6 +49,8 @@ CREATE TABLE ACADEMIC_RECORD (
 	SemesterID VARCHAR(20) NOT NULL,
 	GPA FLOAT,
 	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 /*removed AR_StudentID from this table and Semester_GPA as per the TA grading */
 
@@ -62,24 +74,36 @@ CREATE TABLE CLUBS (
 	Sponsor VARCHAR(40) NOT NULL,
 	Leader VARCHAR(40), /* should this reference a student? */
 	PRIMARY KEY(Club_Name,Club_School),
-	FOREIGN KEY (Club_School) REFERENCES school (Name),
+	FOREIGN KEY (Club_School) REFERENCES school (Name)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	FOREIGN KEY (Leader) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 
 CREATE TABLE JOINS (
 	StudentID INTEGER NOT NULL,
 	Club_Name VARCHAR(30) NOT NULL, /*this wasnt in our relations table but i think it should have been, added because it wouldn't make sense to just have the club_school listed when a student joins a club*/
 	Club_School VARCHAR(30) NOT NULL,
-	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
-	FOREIGN KEY (Club_Name, Club_School) REFERENCES clubs (Club_Name, Club_School),
+	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (Club_Name, Club_School) REFERENCES clubs (Club_Name, Club_School)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	PRIMARY KEY(StudentID,Club_Name,Club_School)
 	);
 
 CREATE TABLE ATTENDS (
 	StudentID INTEGER NOT NULL,
 	Address VARCHAR(50) NOT NULL,
-	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
-	FOREIGN KEY (Address) REFERENCES school (Address),
+	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (Address) REFERENCES school (Address)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	PRIMARY KEY(StudentID,Address)
 	);
 
@@ -90,6 +114,8 @@ CREATE TABLE COURSE (
 	Course_School VARCHAR(40) NOT NULL,
 	CreditHours SMALLINT,
 	FOREIGN KEY Course_School REFERENCES school (Name)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 	
 CREATE TABLE FACULTY (
@@ -103,16 +129,24 @@ CREATE TABLE FACULTY (
 CREATE TABLE TEACHES (
 	CourseID INTEGER NOT NULL,
 	FacultyID INTEGER NOT NULL,
-	FOREIGN KEY (CourseID) REFERENCES course (CourseID),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID), /*missed this line in phase 2 relations, added back*/
+	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	PRIMARY KEY(FacultyID,CourseID)
 	);
 
 CREATE TABLE TAKES (
 	StudentID INTEGER NOT NULL,
 	CourseID INTEGER NOT NULL,
-	FOREIGN KEY (StudentID) REFERENCES student (StudentID),
-	FOREIGN KEY (CourseID) REFERENCES course (CourseID),
+	FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	PRIMARY KEY(StudentID,CourseID)
 	);
 
@@ -120,13 +154,19 @@ CREATE TABLE CLASS_PERIOD (
 	CourseID INTEGER NOT NULL,
 	ClassPeriod INTEGER NOT NULL,
 	FOREIGN KEY (CourseID) REFERENCES course (CourseID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
 	);
 
 CREATE TABLE WORKS (
 	Address VARCHAR(50) NOT NULL,
 	FacultyID INTEGER NOT NULL,
-	FOREIGN KEY (Address) REFERENCES school (Address),
-	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID),
+	FOREIGN KEY (Address) REFERENCES school (Address)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY (FacultyID) REFERENCES faculty (FacultyID)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
 	PRIMARY KEY(Address,FacultyID)
 	);
 
