@@ -72,12 +72,12 @@ CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
 	Club_School VARCHAR(30) NOT NULL,
 	Sponsor VARCHAR(40) NOT NULL,
-	Leader VARCHAR(40), /* should this reference a student? */
+	LeaderID VARCHAR(40), /* should this reference a student? */
 	PRIMARY KEY(Club_Name,Club_School),
 	FOREIGN KEY (Club_School) REFERENCES school (Name)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
-	FOREIGN KEY (Leader) REFERENCES student (StudentID)
+	FOREIGN KEY (LeaderID) REFERENCES student (StudentID)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 	);
