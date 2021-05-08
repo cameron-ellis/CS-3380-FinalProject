@@ -53,18 +53,18 @@ CREATE TABLE ACADEMIC_RECORD (
 
 CREATE TABLE SCHOOL (
 	Address VARCHAR(50) PRIMARY KEY,
-	Name VARCHAR(40) NOT NULL,
+	School_Name VARCHAR(40) NOT NULL,
 	PhoneNumber VARCHAR(15) NOT NULL
 	);
-/* Error occurring here saying incorrect formatting for Foreign Key */
+
 CREATE TABLE CLUBS (
 	Club_Name VARCHAR(30) NOT NULL,
 	Club_School VARCHAR(40) NOT NULL,
 	Sponsor VARCHAR(40) NOT NULL,
     LeaderID INTEGER NOT NULL,
-	FOREIGN KEY (Club_School) REFERENCES school (Name)
+	/*FOREIGN KEY (Club_School) REFERENCES school (School_Name)
 		ON UPDATE CASCADE
-		ON DELETE CASCADE,
+		ON DELETE CASCADE,*/
 	FOREIGN KEY (LeaderID) REFERENCES student (StudentID)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
@@ -101,10 +101,10 @@ CREATE TABLE COURSE (
 	CourseName VARCHAR(30) NOT NULL,
 	RoomNumber SMALLINT,
 	Course_School VARCHAR(40) NOT NULL,
-	CreditHours SMALLINT,
-	FOREIGN KEY (Course_School) REFERENCES school (Name)
+	CreditHours SMALLINT/*,
+	FOREIGN KEY (Course_School) REFERENCES school (School_Name)
 		ON UPDATE CASCADE
-		ON DELETE CASCADE
+		ON DELETE CASCADE*/
 	);
 
 CREATE TABLE FACULTY (
@@ -167,7 +167,7 @@ VALUES
 ('87654321', 'Bill', 'Quinton', 'Smith', '2004-04-04', '10', 'Billqsmith123@gmail.com'),
 ('13579246', 'Jill', 'Rorry', 'Brooks', '2003-03-03', '11', 'jillrbrooks@yahoo.com'),
 ('24681012', 'Rachel', NULL, 'Brooks', '2008-01-01', '6', 'rrice@gmail.com'),
-('11111111', 'James', NULL, 'Kempf', NULL, NULL, NULL);
+('11111111', 'James', NULL, 'Kempf', '2004-08-09', '10', NULL);
 
 /*Student_Emergency_Contact Table Inserts*/
 INSERT INTO STUDENT_EMERGENCY_CONTACT
@@ -193,7 +193,7 @@ VALUES
 
 /*Student_EC_Email Table Inserts*/
 INSERT INTO STUDENT_EC_EMAIL
-( StudentID, EC_NAME, Email )
+( StudentID, EC_NAME, EC_Email )
 VALUES
 ('12345678', 'John Jacob', 'John1234@gmail.com'),
 ('12345678', 'Joan Jacob', 'Joanjacob894@yahoo.com'),
@@ -224,7 +224,7 @@ VALUES
 */
 /*School Table Inserts*/
 INSERT INTO SCHOOL
-(Address, Name, PhoneNumber)
+(Address, School_Name, PhoneNumber)
 VALUES
 ('1104 N Providence Rd, Columbia, MO 65203', 'Hickman', '(573) 214-3000'),
 ('4303 S Providence Rd #7198, Columbia, MO 65203', 'Rockbridge', '(573) 214-3100'),
@@ -233,13 +233,13 @@ VALUES
 
 /*Clubs Table Inserts*/
 INSERT INTO CLUBS
-(Club_Name, Club_School, Sponsor, Leader)
+(Club_Name, Club_School, Sponsor, LeaderID)
 VALUES
-('Chess Club', 'Smithton', 'Ruthie Maxene', 'Sammi Aiden'),
-('Robotics', 'Hickman', 'Vicky Laney', 'Zachery Adella'),
-('Choir', 'Rockbridge', 'Derick Andy', 'Jill Brooks'),
-('Baseball', 'Battle', 'Merry Sanford', 'Joe Jacob'),
-('Chess Club', 'Hickman', NULL, NULL);
+('Chess Club', 'Smithton', 'Ruthie Maxene', '24681012'),
+('Robotics', 'Hickman', 'Vicky Laney', '87654321'),
+('Choir', 'Rockbridge', 'Derick Andy', '12345678'),
+('Baseball', 'Battle', 'Merry Sanford', '11111111'),
+('Chess Club', 'Hickman', 'Bobby Taub', '13579246');
 
 /*Joins Table Inserts*/
 INSERT INTO JOINS
@@ -275,14 +275,14 @@ VALUES
 
 /*Faculty Table Inserts*/
 INSERT INTO FACULTY
-(FacultyID, Faculty_Name, Salary, StartDate)
+(FacultyID, Faculty_Name, Salary, StartDate, Department)
 VALUES
-('16130625', 'Ruthie Maxene', '60000.00', '1990-06-15'),
-('27917199', 'Constance Odell', '45000.00', '2010-01-25'),
-('77735153', 'Stanley Haley', '48000.00', '2007-01-23'),
-('16421971', 'Mandy Brownlow', '52000.00', '1999-03-02'),
-('71738964', 'Adena Addison', '40000.00', '2017-04-07'),
-('37996205', 'Victor Street', '50000.00', '2002-10-11');
+('16130625', 'Ruthie Maxene', '60000.00', '1990-06-15', 'Math'),
+('27917199', 'Constance Odell', '45000.00', '2010-01-25', 'Math'),
+('77735153', 'Stanley Haley', '48000.00', '2007-01-23', 'English'),
+('16421971', 'Mandy Brownlow', '52000.00', '1999-03-02', 'Science'),
+('71738964', 'Adena Addison', '40000.00', '2017-04-07', 'Math'),
+('37996205', 'Victor Street', '50000.00', '2002-10-11', 'Social Studies');
 
 /*Teaches Table Inserts*/
 INSERT INTO TEACHES
