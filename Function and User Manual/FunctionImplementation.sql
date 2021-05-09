@@ -53,16 +53,20 @@ SELECT COUNT(T.StudentID)
 FROM COURSE AS C, TAKES AS T
 WHERE C.CourseID = T.CourseID AND C.CourseName = 'Course_Name' AND C.Course_School = 'School_Name';
 
-/* avgSchoolGPA Function
--Tried to implement, but it became difficult because there are multiple semester GPAs
-    1.) Give student an attribute of GPA for their current GPA
-    2.) Have function take in which semester to get average from
-*/
+/* avgSchoolGPA Function (Per Semester) */
+SELECT AVG(ACA.GPA)
+FROM SCHOOL AS SCH, ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
+WHERE SCH.Address = ATT.Address AND ATT.StudentID = ACA.StudentID AND SCH.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
 
-/* maxMinSchoolGPA Function
--Same problem as avgSchoolGPA function, do we include current GPA as student attribute,
-or do we do it per semester and ask user to input semester?
-*/
+/* maxSchoolGPA Function (Per Semester) */
+SELECT MAX(ACA.GPA)
+FROM SCHOOL AS SCH, ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
+WHERE SCH.Address = ATT.Address AND ATT.StudentID = ACA.StudentID AND SCH.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
+
+/* minSchool GPA Function (Per Semester) */
+SELECT MIN(ACA.GPA)
+FROM SCHOOL AS SCH, ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
+WHERE SCH.Address = ATT.Address AND ATT.StudentID = ACA.StudentID AND SCH.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
 
 /* getStudentCourses Function */
 SELECT T.StudentID, C.CourseName
@@ -80,13 +84,13 @@ FROM ATTENDS AS A, SCHOOL AS S
 WHERE A.Address = S.Address AND A.StudentID = 'Desired_StudentID';
 
 /* calcGradCreds Function */
-SELECT 'Creds_To_Graduate' - Credits
+SELECT 'Creds_To_Graduate' - SUM(Semester_Credits)
 FROM ACADEMIC_RECORD
 WHERE StudentID = 'Desired_StudentID';
 
 /* getFacultyDept Function
 -Hold off on this function until we figure out how we want to
-handle teacher departments
+handle teacher departments (possibly just absorb into general get function)
 */
 
 /* getSchoolFaculty Function */
