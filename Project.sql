@@ -254,13 +254,13 @@ VALUES
 
 /*Attends Table Inserts*/
 INSERT INTO ATTENDS
-(StudentID, Address)
+(StudentID, School_Name)
 VALUES
-('12345678', '4303 S Providence Rd #7198, Columbia, MO 65203'),
-('87654321', '1104 N Providence Rd, Columbia, MO 65203'),
-('13579246', '1104 N Providence Rd, Columbia, MO 65203'),
-('24681012', '3600 W Worley St, Columbia, MO 65203'),
-('11111111', '7575 E St Charles Rd, Columbia, MO 65202');
+('12345678', 'Rockbridge'),
+('87654321', 'Hickman'),
+('13579246', 'Hickman'),
+('24681012', 'Smithton'),
+('11111111', 'Battle');
 
 /*Course Table Inserts*/
 INSERT INTO COURSE
@@ -318,11 +318,11 @@ VALUES
 
 /*Works Table Inserts*/
 INSERT INTO WORKS
-(Address, FacultyID)
+(School_Name, FacultyID)
 VALUES
-('1104 N Providence Rd, Columbia, MO 65203', '16130625'),
-('4303 S Providence Rd #7198, Columbia, MO 65203', '27917199'),
-('3600 W Worley St, Columbia, MO 65203', '77735153'),
-('1104 N Providence Rd, Columbia, MO 65203', '16421971'),
-('3600 W Worley St, Columbia, MO 65203', '71738964'),
-('7575 E St Charles Rd, Columbia, MO 65202', '37996205');
+('Hickman', '16130625'),
+('Rockbridge', '27917199'),
+('Smithton', '77735153'),
+('Hickman', '16421971'),
+('Smithton', '71738964'),
+('Battle', '37996205');
