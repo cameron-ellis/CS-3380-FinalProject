@@ -208,18 +208,10 @@ VALUES
 ('87654321', 'Spring 2020', '50', '3.6'),
 ('13579246', 'Fall 2019', '70', '3.0'),
 ('24681012', 'Fall 2019', '36', '2.5'),
-('11111111', 'Spring 2018', '0', '1.0');
+('11111111', 'Spring 2018', '0', '1.0'),
+('12345678', 'Fall 2019', '12', '3.7'),
+('87654321', 'Fall 2019', '15', '2.5');
 
-/*Semester_GPA Table Inserts removed and placed data into academic record
-INSERT INTO SEMESTER_GPA
-(StudentID, Semester, GPA)
-VALUES
-('12345678', 'Spring 2020', '4.0'),
-('87654321', 'Spring 2020', '3.6'),
-('13579246', 'Fall 2019', '3.0'),
-('24681012', 'Fall 2019', '2.5'),
-('11111111', 'Spring 2018', '1.0');
-*/
 /*School Table Inserts*/
 INSERT INTO SCHOOL
 (Address, School_Name, PhoneNumber)
@@ -265,11 +257,12 @@ INSERT INTO COURSE
 (CourseID, CourseName, RoomNumber, Course_School, CreditHours)
 VALUES
 ('14020184', 'Calculus', '5', 'Hickman', '5'),
-('25830589', 'Calculus', '6', 'Smithton', '3'),
+('25830589', 'Calculus', '6', 'Rockbridge', '3'),
 ('75230598', 'English', '1', 'Smithton', '3'),
 ('12365440', 'Chemistry', '3', 'Hickman', '4'),
 ('71024395', 'Algebra', '1', 'Smithton', '3'),
-('36540392', 'US History', '2', 'Battle', '4');
+('36540392', 'US History', '2', 'Battle', '4'),
+('71039054', 'Geometry', '8', 'Smithton', '4');
 
 /*Faculty Table Inserts*/
 INSERT INTO FACULTY
@@ -291,7 +284,8 @@ VALUES
 ('75230598', '77735153'),
 ('12365440', '16421971'),
 ('71024395', '71738964'),
-('36540392', '37996205');
+('36540392', '37996205'),
+('71039054', '71738964');
 
 /*Takes Table Inserts*/
 INSERT INTO TAKES
@@ -301,7 +295,9 @@ VALUES
 ('87654321', '14020184'),
 ('13579246', '12365440'),
 ('24681012', '71024395'),
-('11111111', '36540392');
+('11111111', '36540392'),
+('24681012', '75230598'),
+('87654321', '12365440');
 
 /*Class-Period Table Inserts*/
 INSERT INTO CLASS_PERIOD

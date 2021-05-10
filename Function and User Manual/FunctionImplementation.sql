@@ -18,7 +18,7 @@ SET Column1=value1,...,ColumnN=valueN
 WHERE PKAttr = (desiredPK);
 
 /* getTuple Function */
-SELECT *
+SELECT Desired_Attributes
 FROM TABLE_NAME
 WHERE PKAttr = (desiredPK);
 
@@ -44,9 +44,9 @@ WHERE CreditHours =
              WHERE Course_School = 'School_Name');
 
 /* countStudentsSchool Function */
-SELECT COUNT(StudentID)
-FROM SCHOOL AS S, ATTENDS AS A
-WHERE S.Address = A.Address AND S.Name = 'School_Name';
+SELECT COUNT(A.StudentID)
+FROM ATTENDS AS A
+WHERE A.School_Name = 'School_Name';
 
 /* countStudentsCourse Function */
 SELECT COUNT(T.StudentID)
@@ -55,18 +55,18 @@ WHERE C.CourseID = T.CourseID AND C.CourseName = 'Course_Name' AND C.Course_Scho
 
 /* avgSchoolGPA Function (Per Semester) */
 SELECT AVG(ACA.GPA)
-FROM SCHOOL AS SCH, ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
-WHERE SCH.Address = ATT.Address AND ATT.StudentID = ACA.StudentID AND SCH.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
+FROM ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
+WHERE ATT.StudentID = ACA.StudentID AND ATT.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
 
 /* maxSchoolGPA Function (Per Semester) */
 SELECT MAX(ACA.GPA)
-FROM SCHOOL AS SCH, ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
-WHERE SCH.Address = ATT.Address AND ATT.StudentID = ACA.StudentID AND SCH.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
+FROM ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
+WHERE ATT.StudentID = ACA.StudentID AND ATT.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
 
 /* minSchool GPA Function (Per Semester) */
 SELECT MIN(ACA.GPA)
-FROM SCHOOL AS SCH, ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
-WHERE SCH.Address = ATT.Address AND ATT.StudentID = ACA.StudentID AND SCH.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
+FROM ATTENDS AS ATT, ACADEMIC_RECORD AS ACA
+WHERE ATT.StudentID = ACA.StudentID AND ATT.School_Name = 'School_Name' AND ACA.SemesterID = 'Semester_ID';
 
 /* getStudentCourses Function */
 SELECT T.StudentID, C.CourseName
@@ -74,34 +74,34 @@ FROM COURSE AS C, TAKES AS T
 WHERE C.CourseID = T.CourseID AND T.StudentID = 'Desired_StudentID';
 
 /* getStudentClubs Function */
-SELECT StudentID, Club_Name
+SELECT Club_Name
 FROM JOINS
 WHERE StudentID = 'Desired_StudentID';
 
 /* getStudentSchool Function */
-SELECT A.StudentID, S.Name
-FROM ATTENDS AS A, SCHOOL AS S
-WHERE A.Address = S.Address AND A.StudentID = 'Desired_StudentID';
+SELECT S.LastName, S.FirstName, A.School_Name
+FROM ATTENDS AS A, STUDENT AS S
+WHERE S.StudentID = A.StudentID AND A.StudentID = 'StudentID';
 
 /* calcGradCreds Function */
 SELECT 'Creds_To_Graduate' - SUM(Semester_Credits)
 FROM ACADEMIC_RECORD
 WHERE StudentID = 'Desired_StudentID';
 
-/* getFacultyDept Function
--Hold off on this function until we figure out how we want to
-handle teacher departments (possibly just absorb into general get function)
-*/
-
 /* getSchoolFaculty Function */
 SELECT F.Faculty_Name
 FROM SCHOOL AS S, WORKS AS W, FACULTY AS F
-WHERE S.Address = W.Address AND W.FacultyID = F.FacultyID AND S.Name = 'School_Name';
+WHERE S.School_Name = W.School_Name AND W.FacultyID = F.FacultyID AND S.School_Name = 'School_Name';
 
 /* getFacultyCourses Function */
-SELECT T.FacultyID, C.CourseName
+SELECT C.CourseName
 FROM TEACHES AS T, COURSE AS C
 WHERE C.CourseID = T.CourseID AND T.FacultyID = 'Desired_FacultyID';
+
+/* getCoursePeriod Function */
+SELECT CP.ClassPeriod
+FROM COURSE AS CO, CLASS_PERIOD AS CP
+WHERE CO.CourseID = CP.CourseID AND CO.CourseName = 'Course_Name' AND CO.Course_School = 'School_Name';
 
 /* cumulativeGPA Function */
 SELECT AVG(GPA)
