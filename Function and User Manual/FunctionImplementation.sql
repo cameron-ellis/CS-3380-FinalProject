@@ -104,9 +104,9 @@ FROM COURSE AS CO, CLASS_PERIOD AS CP
 WHERE CO.CourseID = CP.CourseID AND CO.CourseName = 'Course_Name' AND CO.Course_School = 'School_Name';
 
 /* cumulativeGPA Function */
-SELECT AVG(GPA)
+SELECT FORMAT(AVG(GPA), 4)
 FROM ACADEMIC_RECORD
-WHERE StudentID = 'Desired_StudentID';
+WHERE StudentID = '12345678';
 
 /* clubMemberCount Function */
 SELECT COUNT(StudentID)
