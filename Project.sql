@@ -256,7 +256,7 @@ VALUES
 INSERT INTO COURSE
 (CourseID, CourseName, RoomNumber, Course_School, CreditHours)
 VALUES
-('14020184', 'Calculus', '5', 'Hickman', '5'),
+('1402018', 'Calculus', '5', 'Hickman', '5'),
 ('25830589', 'Calculus', '6', 'Rockbridge', '3'),
 ('75230598', 'English', '1', 'Smithton', '3'),
 ('12365440', 'Chemistry', '3', 'Hickman', '4'),
@@ -279,7 +279,7 @@ VALUES
 INSERT INTO TEACHES
 (CourseID, FacultyID)
 VALUES
-('14020184', '16130625'),
+('1402018', '16130625'),
 ('25830589', '27917199'),
 ('75230598', '77735153'),
 ('12365440', '16421971'),
@@ -292,7 +292,7 @@ INSERT INTO TAKES
 (StudentID, CourseID)
 VALUES
 ('12345678', '25830589'),
-('87654321', '14020184'),
+('87654321', '1402018'),
 ('13579246', '12365440'),
 ('24681012', '71024395'),
 ('11111111', '36540392'),
@@ -303,7 +303,7 @@ VALUES
 INSERT INTO CLASS_PERIOD
 (CourseID, ClassPeriod)
 VALUES
-('14020184', '6'),
+('1402018', '6'),
 ('25830589', '1'),
 ('75230598', '4'),
 ('12365440', '8'),
