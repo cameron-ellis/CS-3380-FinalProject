@@ -105,7 +105,7 @@ WHERE CO.CourseID = CP.CourseID AND CO.CourseName = 'Course_Name' AND CO.Course_
 
 /* cumulativeGPA Function */
 SELECT AVG(GPA)
-FROM SEMESTER_GPA
+FROM ACADEMIC_RECORD
 WHERE StudentID = 'Desired_StudentID';
 
 /* clubMemberCount Function */
