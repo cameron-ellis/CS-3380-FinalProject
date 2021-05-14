@@ -307,7 +307,7 @@ VALUES
 INSERT INTO CLASS_PERIOD
 (CourseID, ClassPeriod)
 VALUES
-('1402018', '6'),
+('14020184', '6'),
 ('25830589', '1'),
 ('75230598', '4'),
 ('12365440', '8'),
