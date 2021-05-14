@@ -1,3 +1,7 @@
+/* Group 16: Cameron Ellis, Micah Remus, Sneha Reddy
+	Database Function Queries
+*/
+
 /* insert Function */
 INSERT INTO TABLE_NAME
 (Attr_1, Attr_2, Attr_3, ... , Attr_n)
