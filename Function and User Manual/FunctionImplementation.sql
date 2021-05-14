@@ -12,7 +12,8 @@ VALUES
 INSERT INTO STUDENT
 ( StudentID, FirstName, MiddleName, LastName, DateOfBirth, GradeLevel, StudentEmail )
 VALUES
-('22222222', 'Mike', 'James', 'Jacob', '2005-09-17', '9', 'Mike12345@gmail.com');
+('22222222', 'Mike', 'James', 'Jacob', '2005-09-17', '9', 'Mike12345@gmail.com'),
+('33333313', 'Jennifer', 'Marie', 'Barber', '2002-08-02', '12', 'JennyB123@yahoo.com');
 
 /* delete Function */
 DELETE FROM TABLE_NAME
@@ -202,7 +203,7 @@ WHERE CO.CourseID = CP.CourseID AND CO.CourseName = 'Course_Name' AND CO.Course_
 /* getCoursePeriod Function Example */
 SELECT CP.ClassPeriod
 FROM COURSE AS CO, CLASS_PERIOD AS CP
-WHERE CO.CourseID = CP.CourseID AND CO.CourseName = 'Calculus' AND CO.Course_School = 'Hickman';
+WHERE CO.CourseID = CP.CourseID AND CO.CourseName = 'Pre-Calculus' AND CO.Course_School = 'Hickman';
 
 /* cumulativeGPA Function */
 SELECT FORMAT(AVG(GPA), 4)
