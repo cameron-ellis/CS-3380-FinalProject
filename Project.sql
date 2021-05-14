@@ -256,7 +256,7 @@ VALUES
 INSERT INTO COURSE
 (CourseID, CourseName, RoomNumber, Course_School, CreditHours)
 VALUES
-('1402018', 'Calculus', '5', 'Hickman', '5'),
+('14020184', 'Calculus', '5', 'Hickman', '5'),
 ('25830589', 'Calculus', '6', 'Rockbridge', '3'),
 ('75230598', 'English', '1', 'Smithton', '3'),
 ('12365440', 'Chemistry', '3', 'Hickman', '4'),
