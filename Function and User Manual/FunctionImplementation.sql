@@ -1,4 +1,5 @@
 /* Group 16: Cameron Ellis, Micah Remus, Sneha Reddy
+	CS_3380
 	Database Function Queries
 */
 

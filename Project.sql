@@ -1,3 +1,7 @@
+/* Group 16: Cameron Ellis, Micah Remus, Sneha Reddy
+    CS_3380
+    Database Tables and Inserts
+ */
 CREATE TABLE STUDENT (
     StudentID INTEGER PRIMARY KEY,
     FirstName VARCHAR(20) NOT NULL,
