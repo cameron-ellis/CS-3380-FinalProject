@@ -16,16 +16,16 @@ VALUES
 
 /* delete Function */
 DELETE FROM TABLE_NAME
-WHERE PKAttr = (desiredPK);
+WHERE PKAttr = 'desiredPK';
 
 /* delete Function Example */
 DELETE FROM STUDENT
 WHERE StudentID = '11111111';
 
 /* update Function */
-UPDATE Table
+UPDATE TABLE_NAME
 SET Column1=value1,...,ColumnN=valueN
-WHERE PKAttr = (desiredPK);
+WHERE PKAttr = 'desiredPK';
 
 /* update Function Example */
 UPDATE COURSE
@@ -35,7 +35,7 @@ WHERE CourseID='14020184';
 /* getTuple Function */
 SELECT Desired_Attributes
 FROM TABLE_NAME
-WHERE PKAttr = (desiredPK);
+WHERE PKAttr = 'desiredPK';
 
 /* getTuple Function Example */
 SELECT F.Salary, F.Faculty_Name, F.Department
