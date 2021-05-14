@@ -2,11 +2,11 @@
 INSERT INTO TABLE_NAME
 (Attr_1, Attr_2, Attr_3, ... , Attr_n)
 VALUES
-(A1V_1, A1V_2, A1V_3, ..., A1V_n),
-(A2V_1, A2V_2, A2V_3, ..., A2V_n),
-(A3V_1, A3V_2, A3V_3, ..., A3V_n),
+(T1A_1, T1A_2, T1A_3, ..., T1A_n),
+(T2A_1, T2A_2, T2A_3, ..., T2A_n),
+(T3A_1, T3A_2, T3A_3, ..., T3A_n),
 ...
-(AnV_1, AnV_2, AnV_3, ..., AnV_n);
+(TnA_1, TnA_2, TnA_3, ..., TnA_n);
 
 /* insert Function Example */
 INSERT INTO STUDENT
